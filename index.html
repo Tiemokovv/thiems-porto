@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiemoko Traoré | Ingénieur Cloud & Administrateur Réseaux</title>
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0b0f19;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1e293b;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #22c55e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 15, 25, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Container Général */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        /* Grid Competences */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .skill-card ul li {
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .skill-card ul li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Grid Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Timeline Parcours */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .timeline-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: border-color 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+        }
+
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barres de navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Thiemoko Traoré</div>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#experience">Parcours</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- En-tête / Présentation -->
+        <section class="hero" id="about">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Disponible pour opportunités Cloud & IT
+            </div>
+            <h1>Thiemoko Traoré</h1>
+            <h2>Administrateur Réseaux & Ingénieur Cloud</h2>
+            <p>
+                Passionné par le Cloud Computing, l'administration système et la sécurité des réseaux. 
+                Spécialisé dans la conception d'architectures AWS sécurisées (IaC), le déploiement d'infrastructures virtualisées / containerisées (Docker, VMware) et l'automatisation.
+            </p>
+            <div class="hero-btns">
+                <a href="https://linkedin.com/in/ton-profil" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-linkedin"></i> Profil LinkedIn
+                </a>
+                <a href="https://github.com/Tiemokovv" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> Dépôt GitHub
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Me contacter
+                </a>
+            </div>
+        </section>
+
+        <!-- Domain de Compétences -->
+        <section id="skills">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Domaines d'Expertise</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                    <h3>Cloud AWS & DevOps</h3>
+                    <ul>
+                        <li>AWS CloudFormation (IaC)</li>
+                        <li>Amazon S3, CloudFront & OAC</li>
+                        <li>Amazon VPC & Sécurité IAM</li>
+                        <li>AWS CLI & Automatisation</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Réseaux & Sécurité</h3>
+                    <ul>
+                        <li>Routage Inter-VLAN & Commutation</li>
+                        <li>Cisco Packet Tracer / Configurations</li>
+                        <li>Protocoles TCP/IP, DNS, DHCP, VPN</li>
+                        <li>Pare-feu & Filtrage Réseau</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                    <h3>Systèmes & Homelab</h3>
+                    <ul>
+                        <li>Linux (Debian, Ubuntu) / Windows Server</li>
+                        <li>Docker & Containerisation</li>
+                        <li>Virtualisation (VMware, VirtualBox)</li>
+                        <li>Supervision (Zabbix, GLPI)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Développement & Automation</h3>
+                    <ul>
+                        <li>Python (Scripts réseau / Sockets)</li>
+                        <li>Node.js & Base de données PostgreSQL/SQLite</li>
+                        <li>Workflows n8n & Intégrations API</li>
+                        <li>Git & GitHub (Control de version)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projets Réalisés -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> Projets Récents</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div>
+                        <h3>Site Web Statique Sécurisé (AWS IaC)</h3>
+                        <p>Déploiement entièrement automatisé via AWS CloudFormation d'un site web hébergé sur un bucket S3 privé, sécurisé par Origin Access Control (OAC) et distribué globalement avec Amazon CloudFront (HTTPS).</p>
+                        <div class="tags">
+                            <span class="tag">AWS CloudFormation</span>
+                            <span class="tag">S3</span>
+                            <span class="tag">CloudFront</span>
+                            <span class="tag">IAM</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/Tiemokovv/aws-s3-cloudfront-portfolio" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> Voir le code</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <h3>Environnement Homelab & Supervision</h3>
+                        <p>Mise en place d'un serveur de laboratoire sous Docker intégrant Zabbix pour la supervision d'infrastructures réseaux, GLPI pour la gestion de parc IT/ticketing et n8n pour l'automatisation de tâches.</p>
+                        <div class="tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Zabbix</span>
+                            <span class="tag">GLPI</span>
+                            <span class="tag">Linux</span>
+                        </div>
+                    </div>
+                    <span class="btn btn-secondary"><i class="fas fa-check-circle"></i> En production locale</span>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <h3>Application Edumali / Ekimali</h3>
+                        <p>Développement d'une application de gestion éducative avec backend de base de données (SQLite/PostgreSQL) et scripts d'interaction client-serveur.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <span class="btn btn-secondary"><i class="fas fa-code-branch"></i> Projet applicatif</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Expérience et Diplômes -->
+        <section id="experience">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formation & Certification</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 – En cours</div>
+                    <div class="timeline-title">Master 1 en Réseaux et Télécommunications</div>
+                    <div class="timeline-subtitle">INTEC-SUP</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Certification AWS</div>
+                    <div class="timeline-title">AWS Certified Cloud Practitioner</div>
+                    <div class="timeline-subtitle">Amazon Web Services</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Formation Spécialisée</div>
+                    <div class="timeline-title">Programme AWS re/Start</div>
+                    <div class="timeline-subtitle">Orange Digital Center</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 – 2025</div>
+                    <div class="timeline-title">Licence 3 en Réseaux & Télécoms</div>
+                    <div class="timeline-subtitle">INTEC-SUP</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2 class="section-title"><i class="fas fa-envelope-open-text"></i> Restons en Contact</h2>
+            <div class="contact-grid">
+                
+                <a href="https://linkedin.com/in/ton-profil" target="_blank" class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Mon profil professionnel</p>
+                </a>
+
+                <a href="https://github.com/Tiemokovv" target="_blank" class="contact-card">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>@Tiemokovv</p>
+                </a>
+
+                <a href="mailto:ton.email@exemple.com" class="contact-card">
+                    <i class="fas fa-paper-plane"></i>
+                    <h3>Email</h3>
+                    <p>Envoyez-moi un message</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Thiemoko Traoré • Tous droits réservés.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
